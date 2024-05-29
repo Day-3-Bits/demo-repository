@@ -12,8 +12,16 @@ jobs:
       pull-requests: write
     steps:
     - name: 'Auto-assign issue'
-      uses: pozil/auto-assign-issue@v1
+      uses: pozil/auto-assign-issue@v2
       with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          assignees: SamErde
           numOfAssignee: 1
+          assignees: ${{ vars.DEFAULT_ISSUE_ASSIGNEE }}
+          allowSelfAssign: true
+    - name: 'Auto-assign PR'
+      uses: pozil/auto-assign-issue@v2
+      with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          numOfAssignee: 1
+          assignees: ${{ vars.DEFAULT_PR_ASSIGNEE }}
+          allowSelfAssign: true
